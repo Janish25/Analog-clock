@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>clock</title>
+    <link rel="stylesheet" href="clockstyle.css">
+    <script src="clokscript.js"></script>
+</head>
+<body>
+    <div class="con">
+          <img src="./images/clock.png" alt="clk" height="370 px" width="380px">
+        <div class="clock">
+     
+      <img id=hours src="./images/hour_hand.png" alt="hour">
+      <img id=seconds src="./images/second_hand.png" alt="second">
+      <img id=minutes src="./images/minute_hand.png" alt="minute">
+    </div>
+    <center><h1>ANALOG CLOCK</h1> </center>
+    <center><h2>Made By : Janish Kumar</h2></center>
+
+    <button id="playButton" class="button">Sound</button>
+
+    <script>
+     
+
+    var hours = document.getElementById('hours');
+		var minutes = document.getElementById('minutes');
+		var secondEl = document.getElementById('seconds');
+
+		function initClock() {
+			var date = new Date();
+			var h = date.getHours() % 12;
+			var m = date.getMinutes();
+			var s = date.getSeconds();
+
+			var hourDeg = (h * 30) + (0.5 * m);
+			var minuteDeg = (m * 6) + (0.1 * s);
+			var secondDeg = s * 6;
+
+			hours.style.transform = 'rotate(' + hourDeg + 'deg)';
+			minutes.style.transform = 'rotate(' + minuteDeg + 'deg)';
+			seconds.style.transform = 'rotate(' + secondDeg + 'deg)';
+
+			setTimeout(initClock,1000);
+		};
+    
+
+		initClock();
+
+    </script>
+
+   
+    
+</div>
+
+<script>
+  // Get the button element
+  const playButton = document.getElementById('playButton');
+
+  // Flag variable to track if audio has been played
+  let audioPlayed = false;
+
+  // Event listener for button click
+  playButton.addEventListener('click', function() {
+    if (!audioPlayed) {
+      const audio = new Audio('./sound/tick.mp3');
+      audio.play();
+      audioPlayed = true;
+    }
+  });
+</script>
+
+
+</body>
+</html>
+
